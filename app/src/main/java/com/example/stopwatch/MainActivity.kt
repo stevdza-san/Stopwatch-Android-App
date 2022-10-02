@@ -50,6 +50,18 @@ class MainActivity : ComponentActivity() {
                 }
             }
         }
+        requestPermissions(Manifest.permission.POST_NOTIFICATIONS)
+    }
+    
+    private fun requestPermissions(vararg permissions: String) {
+        val requestPermissionLauncher = registerForActivityResult(
+            ActivityResultContracts.RequestMultiplePermissions()
+        ) { result ->
+            result.entries.forEach {
+                Log.d("DEBUG", "${it.key} = ${it.value}")
+            }
+        }
+        requestPermissionLauncher.launch(permissions.asList().toTypedArray())
     }
 
     override fun onStop() {
