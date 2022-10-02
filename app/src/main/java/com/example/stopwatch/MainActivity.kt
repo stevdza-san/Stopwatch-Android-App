@@ -1,13 +1,16 @@
 package com.example.stopwatch
 
+import android.Manifest
 import android.content.ComponentName
 import android.content.Context
 import android.content.Intent
 import android.content.ServiceConnection
 import android.os.Bundle
 import android.os.IBinder
+import android.util.Log
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.compose.animation.ExperimentalAnimationApi
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -58,7 +61,7 @@ class MainActivity : ComponentActivity() {
             ActivityResultContracts.RequestMultiplePermissions()
         ) { result ->
             result.entries.forEach {
-                Log.d("DEBUG", "${it.key} = ${it.value}")
+                Log.d("MainActivity", "${it.key} = ${it.value}")
             }
         }
         requestPermissionLauncher.launch(permissions.asList().toTypedArray())
